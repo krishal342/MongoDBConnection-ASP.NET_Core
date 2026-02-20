@@ -7,3 +7,16 @@
 - /students/:id -> PUT request to update student by id -> take 'name' or 'email' or 'address'
 - /students/:id -> DELETE request to delete student by id
 
+# Course routes
+- /courses -> POST request to create course -> take 'title', 'description', 'creditHours'
+- /courses -> GET request to get all courses
+- /courses/:id -> GET request to get course by id
+- /courses/:id -> PUT request to update course by id -> take 'title' or 'description' or 'creditHours'
+- /courses/:id -> DELETE request to delete course by id
+
+# Enrollment routes
+
+- /enrollments -> POST request to create enrollment -> take studentId as 'student' and courseId as 'course' 
+- /enrollments -> GET request to get all enrollment
+- /enrollments:id -> GET request to get enrollment by id
+- /ebrikknebts:id -> DELETE request to delete enrollment by id

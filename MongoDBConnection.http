@@ -1,9 +1,10 @@
 @MongoDBConnection_HostAddress = http://localhost:5217
 
 
-@id=6996c195dcf60223d1096e2f
-###
+###  
+//// students 
 
+@id=699730a39d3f2c958a1bf7b5
 
 GET {{MongoDBConnection_HostAddress}}/students
 
@@ -37,7 +38,10 @@ Content-Type: application/json
 
 ###
 
-@courseId = 699821fd1d61a72162966c72
+////// courses
+
+@courseId = 699821bc1d61a72162966c71
+
 GET {{MongoDBConnection_HostAddress}}/courses
 
 ###
@@ -67,5 +71,33 @@ Content-Type: application/json
 ###
 
 DELETE {{MongoDBConnection_HostAddress}}/courses/{{courseId}}
+
+###
+
+
+////// enrollments
+
+@enrollmentId = 69985ed61121e7ca5ade24ac
+
+GET {{MongoDBConnection_HostAddress}}/enrollments
+
+###
+
+GET {{MongoDBConnection_HostAddress}}/enrollments/{{enrollmentId}}
+
+
+###
+
+POST {{MongoDBConnection_HostAddress}}/enrollments
+Content-Type: application/json
+
+{
+  "student":"699730a39d3f2c958a1bf7b5",
+  "course":"699821bc1d61a72162966c71"
+}
+
+###
+
+DELETE {{MongoDBConnection_HostAddress}}/enrollments/{{enrollmentId}}
 
 ###

@@ -17,6 +17,7 @@ builder.Services.AddSingleton<IMongoClient>(sp =>
 
 builder.Services.AddScoped<StudentsService>();
 builder.Services.AddScoped<CoursesService>();
+builder.Services.AddScoped<EnrollmentsServices>();
 
 builder.Services.AddControllers();
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi

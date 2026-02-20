@@ -3,6 +3,7 @@ using MongoDB.Bson.Serialization.Attributes;
 
 namespace MongoDBConnection.Models
 {
+    [BsonIgnoreExtraElements]
     public class Enrollment
     {
         [BsonId]
