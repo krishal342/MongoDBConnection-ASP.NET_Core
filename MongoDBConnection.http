@@ -1,7 +1,7 @@
 @MongoDBConnection_HostAddress = http://localhost:5217
 
 
-@id=699730a39d3f2c958a1bf7b5
+@id=6996c195dcf60223d1096e2f
 ###
 
 
@@ -32,7 +32,40 @@ PUT {{MongoDBConnection_HostAddress}}/students/{{id}}
 Content-Type: application/json
 
 {
-  "name":"Rita"
+  "name":"Shyam"
 }
+
+###
+
+@courseId = 699821fd1d61a72162966c72
+GET {{MongoDBConnection_HostAddress}}/courses
+
+###
+
+GET {{MongoDBConnection_HostAddress}}/courses/{{courseId}}
+
+###
+
+PUT {{MongoDBConnection_HostAddress}}/courses/{{courseId}}
+Content-Type: application/json
+
+{
+  "title":"C Programming"
+}
+
+###
+
+POST {{MongoDBConnection_HostAddress}}/courses
+Content-Type: application/json
+
+{
+  "title":"Test",
+  "description":"To learn other programming languages you should learn C programming first.",
+  "creditHours": 25
+}
+
+###
+
+DELETE {{MongoDBConnection_HostAddress}}/courses/{{courseId}}
 
 ###

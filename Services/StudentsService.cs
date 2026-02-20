@@ -30,11 +30,8 @@ namespace MongoDBConnection.Services
             await _studentsCollection.Find(x => x.Id == id).FirstOrDefaultAsync();
 
         //update student by id
-        public async Task UpdateStudentAsync(string id,Student updatedStudent)
-        {
-            updatedStudent.Id = id;
+        public async Task UpdateStudentAsync(string id,Student updatedStudent) =>
             await _studentsCollection.ReplaceOneAsync(x => x.Id == id, updatedStudent);
-        }
         
         //delete student by id
         public async Task DeleteStudentAsync(string id) => 

@@ -63,6 +63,7 @@ namespace MongoDBConnection.Controllers
 
             var updatedStudent = new Student
             {
+                Id = id,
                 Name = dtoStudent.Name is not null ? dtoStudent.Name : student.Name,
                 Email = dtoStudent.Email is not null ? dtoStudent.Email.ToLower() : student.Email,
                 Address = dtoStudent.Address is not null ? dtoStudent.Address : student.Address,
