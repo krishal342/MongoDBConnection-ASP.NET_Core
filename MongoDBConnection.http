@@ -1,0 +1,38 @@
+@MongoDBConnection_HostAddress = http://localhost:5217
+
+
+@id=699730a39d3f2c958a1bf7b5
+###
+
+
+GET {{MongoDBConnection_HostAddress}}/students
+
+###
+
+GET {{MongoDBConnection_HostAddress}}/students/{{id}}
+
+###
+
+POST {{MongoDBConnection_HostAddress}}/students
+Content-Type: application/json
+
+{
+  "name":"rita",
+  "email":"RITA@gmail.com",
+  "address":"Patan"
+}
+
+###
+
+DELETE {{MongoDBConnection_HostAddress}}/students/{{id}}
+
+###
+
+PUT {{MongoDBConnection_HostAddress}}/students/{{id}}
+Content-Type: application/json
+
+{
+  "name":"Rita"
+}
+
+###
