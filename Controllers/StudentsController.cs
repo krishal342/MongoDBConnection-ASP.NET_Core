@@ -11,11 +11,13 @@ namespace MongoDBConnection.Controllers
     {
         private readonly StudentsService _studentsService;
         private readonly PassedOutStudentsService _passedOutStudentsService;
+        private readonly CoursesService _coursesService;
 
-        public StudentsController(StudentsService studentsService, PassedOutStudentsService passedOutStudentsService)
+        public StudentsController(StudentsService studentsService, PassedOutStudentsService passedOutStudentsService, CoursesService coursesService)
         {
             _studentsService = studentsService;
             _passedOutStudentsService = passedOutStudentsService;
+            _coursesService = coursesService;
 
         }
 
@@ -82,7 +84,7 @@ namespace MongoDBConnection.Controllers
             return updatedStudent;
         }
 
-        // delete student by id
+        // move student record to passedOutStudent collection by id
         [HttpDelete("{id}/softDelete")]
         public async Task<IActionResult> DeleteStudent(string id)
         {
@@ -101,6 +103,14 @@ namespace MongoDBConnection.Controllers
                 AdmissionOn = student.AdmissionOn,
                 Course = student.Course,
             };
+
+            await _passedOutStudentsService.CreateRecordAsync(passedOutStudent);
+
+            foreach(string c in passedOutStudent.Course)
+            {
+                await _coursesService.MoveStudentAsync(c, id);
+            }
+
             await _studentsService.DeleteStudentAsync(id);
 
             return NoContent();

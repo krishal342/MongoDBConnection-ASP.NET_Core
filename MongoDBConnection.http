@@ -4,7 +4,7 @@
 ###  
 //// students 
 
-@id=699730a39d3f2c958a1bf7b5
+@id=6996b71d4e37b7d9f7578a23
 
 GET {{MongoDBConnection_HostAddress}}/students
 
@@ -25,7 +25,7 @@ Content-Type: application/json
 
 ###
 
-DELETE {{MongoDBConnection_HostAddress}}/students/{{id}}
+DELETE {{MongoDBConnection_HostAddress}}/students/{{id}}/softDelete
 
 ###
 
@@ -99,5 +99,10 @@ Content-Type: application/json
 ###
 
 DELETE {{MongoDBConnection_HostAddress}}/enrollments/{{enrollmentId}}
+
+###
+
+
+
 
 ###
