@@ -40,7 +40,7 @@ Content-Type: application/json
 
 ////// courses
 
-@courseId = 699821bc1d61a72162966c71
+@courseId = 6996bbf2a19ac1dad9632217
 
 GET {{MongoDBConnection_HostAddress}}/courses
 
@@ -54,7 +54,7 @@ PUT {{MongoDBConnection_HostAddress}}/courses/{{courseId}}
 Content-Type: application/json
 
 {
-  "title":"C Programming"
+  "title":"Node.js"
 }
 
 ###
@@ -64,7 +64,7 @@ Content-Type: application/json
 
 {
   "title":"Test",
-  "description":"To learn other programming languages you should learn C programming first.",
+  "description":"Testing To learn other programming languages you should learn C programming first.",
   "creditHours": 25
 }
 

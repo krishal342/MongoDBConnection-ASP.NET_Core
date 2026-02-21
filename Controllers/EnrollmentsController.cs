@@ -40,42 +40,42 @@ namespace MongoDBConnection.Controllers
         }
 
 
-        //[HttpPost]
-        //// create enrollment
-        //public async Task<IActionResult> CreateEnrollment(Enrollment newEnrollment)
-        //{
-        //    // create enrollment record
-        //    await _enrollmentsServices.CreateEnrollmentAsync(newEnrollment);
+        [HttpPost]
+        // create enrollment
+        public async Task<IActionResult> CreateEnrollment(Enrollment newEnrollment)
+        {
+            // create enrollment record
+            await _enrollmentsServices.CreateEnrollmentAsync(newEnrollment);
 
-        //    // adding courseId in student record
-        //    await _studentsService.AddCourseAsync(newEnrollment.Student, newEnrollment.Course);
+            // adding courseId in student record
+            await _studentsService.AddCourseAsync(newEnrollment.Student, newEnrollment.Course);
 
-        //    // adding studentId in course record
-        //    await _coursesService.AddStudentAync(newEnrollment.Course, newEnrollment.Student);
+            // adding studentId in course record
+            await _coursesService.AddStudentAync(newEnrollment.Course, newEnrollment.Student);
 
-        //    return CreatedAtAction(nameof(GetEnrollmentById), new { id = newEnrollment.Id }, newEnrollment);
-        //}
+            return CreatedAtAction(nameof(GetEnrollmentById), new { id = newEnrollment.Id }, newEnrollment);
+        }
 
-        //// delete enrollment by id
-        //[HttpDelete("{id}")]
-        //public async Task<ActionResult> DeleteEnrollment(string id)
-        //{
-        //    var enrollment = await _enrollmentsServices.GetEnrollmentById(id);
-        //    if (enrollment is null)
-        //    {
-        //        return NotFound();
-        //    }
+        // delete enrollment by id
+        [HttpDelete("{id}")]
+        public async Task<ActionResult> DeleteEnrollment(string id)
+        {
+            var enrollment = await _enrollmentsServices.GetEnrollmentById(id);
+            if (enrollment is null)
+            {
+                return NotFound();
+            }
 
-        //    // delete courseId from student record
-        //    await _studentsService.RemoveCourseAsync(enrollment.Student, enrollment.Course);
+            // delete courseId from student record
+            await _studentsService.RemoveCourseAsync(enrollment.Student, enrollment.Course);
 
-        //    // delete studentId from course record
-        //    await _coursesService.RemoveStudentAsync(enrollment.Course, enrollment.Student);
+            // delete studentId from course record
+            await _coursesService.RemoveStudentAsync(enrollment.Course, enrollment.Student);
 
-        //    // delete enrollment record
-        //    await _enrollmentsServices.DeleteAsync(id);
+            // delete enrollment record
+            await _enrollmentsServices.DeleteAsync(id);
 
-        //    return NoContent();
-        //}
+            return NoContent();
+        }
     }
 }
