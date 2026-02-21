@@ -11,5 +11,7 @@
         public string CoursesCollectionName { get; set; } = null!;
 
         public string EnrollmentsCollectionName { get; set; } = null!;
+
+        public string PassedOutStudentsCollectionName { get; set; } = null!;
     }
 }

@@ -77,7 +77,7 @@ DELETE {{MongoDBConnection_HostAddress}}/courses/{{courseId}}
 
 ////// enrollments
 
-@enrollmentId = 69985ed61121e7ca5ade24ac
+@enrollmentId = 69986acf643f773b1d4c98b3
 
 GET {{MongoDBConnection_HostAddress}}/enrollments
 
@@ -93,7 +93,7 @@ Content-Type: application/json
 
 {
   "student":"699730a39d3f2c958a1bf7b5",
-  "course":"699821bc1d61a72162966c71"
+  "course":"6996bbf2a19ac1dad9632217"
 }
 
 ###

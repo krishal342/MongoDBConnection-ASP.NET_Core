@@ -33,6 +33,20 @@ namespace MongoDBConnection.Services
         public async Task UpdateCourseAsync(string id, Course updatedCourse) =>
             await _coursesCollection.ReplaceOneAsync(x => x.Id == id, updatedCourse);
 
+        // adding student
+        public async Task AddStudentAync(string courseId, string studentId) =>
+            await _coursesCollection.UpdateOneAsync(
+                c => c.Id == courseId,
+                Builders<Course>.Update.Push(c => c.Student, studentId)
+                );
+
+        // delete studentId from course record
+        public async Task RemoveStudentAsync(string courseId, string studentId) =>
+            await _coursesCollection.UpdateOneAsync(
+                c => c.Id == courseId,
+                Builders<Course>.Update.Pull(c => c.Student, studentId)
+               );
+
         // delete course by id
         public async Task DeleteCourseAsync(string id) =>
             await _coursesCollection.DeleteOneAsync(x => x.Id == id);

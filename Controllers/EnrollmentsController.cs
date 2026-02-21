@@ -40,69 +40,42 @@ namespace MongoDBConnection.Controllers
         }
 
 
-        [HttpPost]
-        // create enrollment
-        public async Task<IActionResult> CreateEnrollment(Enrollment newEnrollment)
-        {
-            await _enrollmentsServices.CreateEnrollmentAsync(newEnrollment);
+        //[HttpPost]
+        //// create enrollment
+        //public async Task<IActionResult> CreateEnrollment(Enrollment newEnrollment)
+        //{
+        //    // create enrollment record
+        //    await _enrollmentsServices.CreateEnrollmentAsync(newEnrollment);
 
-            var student = await _studentsService.GetStudentByIdAsync(newEnrollment.Student);
-            if (student is null)
-            {
-                return NotFound("Student record not found.");
-            }
+        //    // adding courseId in student record
+        //    await _studentsService.AddCourseAsync(newEnrollment.Student, newEnrollment.Course);
 
-            var course = await _coursesService.GetCourseByIdAsync(newEnrollment.Course);
-            if (course is null)
-            {
-                return NotFound("Course record not found.");
-            }
+        //    // adding studentId in course record
+        //    await _coursesService.AddStudentAync(newEnrollment.Course, newEnrollment.Student);
 
-            student.Course.Add(newEnrollment.Course);
-            course.Student.Add(newEnrollment.Student);
+        //    return CreatedAtAction(nameof(GetEnrollmentById), new { id = newEnrollment.Id }, newEnrollment);
+        //}
 
-            await _studentsService.UpdateStudentAsync(student.Id!, student);
-            await _coursesService.UpdateCourseAsync(course.Id!, course);
+        //// delete enrollment by id
+        //[HttpDelete("{id}")]
+        //public async Task<ActionResult> DeleteEnrollment(string id)
+        //{
+        //    var enrollment = await _enrollmentsServices.GetEnrollmentById(id);
+        //    if (enrollment is null)
+        //    {
+        //        return NotFound();
+        //    }
 
-            return CreatedAtAction(nameof(GetEnrollmentById), new { id = newEnrollment.Id }, newEnrollment);
-        }
+        //    // delete courseId from student record
+        //    await _studentsService.RemoveCourseAsync(enrollment.Student, enrollment.Course);
 
-        // delete enrollment by id
-        [HttpDelete("{id}")]
-        public async Task<ActionResult> DeleteEnrollment(string id)
-        {
-            var enrollment = await _enrollmentsServices.GetEnrollmentById(id);
-            if (enrollment is null)
-            {
-                return NotFound("Enrollment record not found.");
-            }
+        //    // delete studentId from course record
+        //    await _coursesService.RemoveStudentAsync(enrollment.Course, enrollment.Student);
 
+        //    // delete enrollment record
+        //    await _enrollmentsServices.DeleteAsync(id);
 
-            var student = await _studentsService.GetStudentByIdAsync(enrollment.Student);
-            if (student is null)
-            {
-                return NotFound("Student record not found.");
-            }
-
-            var course = await _coursesService.GetCourseByIdAsync(enrollment.Course);
-            if (course is null)
-            {
-                return NotFound("Course record not found.");
-            }
-
-            //Console.WriteLine("Student Courses: " + string.Join(", ", student.Course));
-            //Console.WriteLine("Course Students: " + string.Join(", ", course.Student));
-            //Console.WriteLine("Enrollment.Course: " + enrollment.Course);
-            //Console.WriteLine("Enrollment.Student: " + enrollment.Student);
-
-            //student.Course.Remove(enrollment.Course);
-            //course.Student.Remove(enrollment.Student);
-            student.Course.RemoveAll(c => c == enrollment.Course);
-            course.Student.RemoveAll(s => s == enrollment.Student);
-
-            await _enrollmentsServices.DeleteAsync(id);
-
-            return NoContent();
-        }
+        //    return NoContent();
+        //}
     }
 }

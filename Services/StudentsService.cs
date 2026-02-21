@@ -9,11 +9,11 @@ namespace MongoDBConnection.Services
     {
         private readonly IMongoCollection<Student> _studentsCollection;
 
-        public StudentsService(IMongoClient client,IOptions<DatabaseConfig> databaseConfig)
+        public StudentsService(IMongoClient client, IOptions<DatabaseConfig> databaseConfig)
         {
 
             var database = client.GetDatabase(databaseConfig.Value.DatabaseName);
-            
+
             _studentsCollection = database.GetCollection<Student>(databaseConfig.Value.StudentsCollectionName);
         }
 
@@ -22,7 +22,7 @@ namespace MongoDBConnection.Services
             await _studentsCollection.InsertOneAsync(newStudent);
 
         //get all students
-        public async Task<List<Student>> GetAllStudentAsync() => 
+        public async Task<List<Student>> GetAllStudentAsync() =>
             await _studentsCollection.Find(_ => true).ToListAsync();
 
         //get student by id
@@ -30,11 +30,25 @@ namespace MongoDBConnection.Services
             await _studentsCollection.Find(x => x.Id == id).FirstOrDefaultAsync();
 
         //update student by id
-        public async Task UpdateStudentAsync(string id,Student updatedStudent) =>
+        public async Task UpdateStudentAsync(string id, Student updatedStudent) =>
             await _studentsCollection.ReplaceOneAsync(x => x.Id == id, updatedStudent);
-        
+
+        // adding courseId 
+        public async Task AddCourseAsync(string studentId, string courseId) =>
+            await _studentsCollection.UpdateOneAsync(
+                s => s.Id == studentId,
+                Builders<Student>.Update.Push(s => s.Course, courseId)
+                );
+
+        // delete courseId from student record
+        public async Task RemoveCourseAsync(string studentId, string courseId) =>
+            await _studentsCollection.UpdateOneAsync(
+                s => s.Id == studentId,
+                Builders<Student>.Update.Pull(s => s.Course, courseId)
+                );
+
         //delete student by id
-        public async Task DeleteStudentAsync(string id) => 
+        public async Task DeleteStudentAsync(string id) =>
             await _studentsCollection.DeleteOneAsync(x => x.Id == id);
     }
 }

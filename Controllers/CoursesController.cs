@@ -41,31 +41,31 @@ namespace MongoDBConnection.Controllers
             return CreatedAtAction(nameof(GetCourseById), new { id = newCourse.Id}, newCourse);
         }
 
-        // update course by id
-        [HttpPut("{id}")]
-        public async Task<ActionResult<Course>> UpdateCourse(string id, UpdateCourseDto dtoCourse)
-        {
-            var course = await _coursesService.GetCourseByIdAsync(id);
+        //// update course by id
+        //[HttpPut("{id}")]
+        //public async Task<ActionResult<Course>> UpdateCourse(string id, UpdateCourseDto dtoCourse)
+        //{
+        //    var course = await _coursesService.GetCourseByIdAsync(id);
 
-            if(course is null)
-            {
-                return NotFound();
-            }
+        //    if(course is null)
+        //    {
+        //        return NotFound();
+        //    }
 
-            var updatedCourse = new Course
-            {
-                Id = id,
-                Title = dtoCourse.Title is not null ? dtoCourse.Title : course.Title,
-                Description = dtoCourse.Description is not null ? dtoCourse.Description : course.Description,
-                CreditHours = (int)(dtoCourse.CreditHours is not null ? dtoCourse.CreditHours : course.CreditHours),
-                Student = course.Student
-            };
+        //    var updatedCourse = new Course
+        //    {
+        //        Id = id,
+        //        Title = dtoCourse.Title is not null ? dtoCourse.Title : course.Title,
+        //        Description = dtoCourse.Description is not null ? dtoCourse.Description : course.Description,
+        //        CreditHours = (int)(dtoCourse.CreditHours is not null ? dtoCourse.CreditHours : course.CreditHours),
+        //        Student = course.Student
+        //    };
 
-            await _coursesService.UpdateCourseAsync(id, updatedCourse);
+        //    await _coursesService.UpdateCourseAsync(id, updatedCourse);
 
-            return updatedCourse;
+        //    return updatedCourse;
 
-        }
+        //}
 
         // delete course by id
         [HttpDelete("{id}")]

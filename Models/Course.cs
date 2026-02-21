@@ -19,8 +19,15 @@ namespace MongoDBConnection.Models
         [BsonElement("creditHours")]
         public int CreditHours { get; set; }
 
-        [BsonElement("student")]
+        [BsonElement("currentStudent")]
         [BsonRepresentation(BsonType.ObjectId)]
-        public List<string> Student { get; set; } = new();
+        public List<string> CurrentStudent { get; set; } = new();
+
+        [BsonElement("passedOutStudent")]
+        [BsonRepresentation(BsonType.ObjectId)]
+        public List<string> PassedOutStudent { get; set; } = new();
+
+
+
     }
 }
