@@ -48,10 +48,10 @@ namespace MongoDBConnection.Services
                );
 
         // move currentStudent to passedOutStudent
-        public async Task MoveStudentAsync(string courseId, string studentId) =>
+        public async Task MoveStudentAsync(string courseId, string oldStudentId, string newStudentId) =>
             await _coursesCollection.UpdateOneAsync(
                 c => c.Id == courseId,
-                Builders<Course>.Update.Pull(c => c.CurrentStudent, studentId).Push(c => c.PassedOutStudent, studentId)
+                Builders<Course>.Update.Pull(c => c.CurrentStudent, oldStudentId).Push(c => c.PassedOutStudent, newStudentId)
                 );
 
         // delete course by id

@@ -12,13 +12,14 @@ namespace MongoDBConnection.Controllers
         private readonly StudentsService _studentsService;
         private readonly PassedOutStudentsService _passedOutStudentsService;
         private readonly CoursesService _coursesService;
+        private readonly EnrollmentsServices _enrollmentsService;
 
-        public StudentsController(StudentsService studentsService, PassedOutStudentsService passedOutStudentsService, CoursesService coursesService)
+        public StudentsController(StudentsService studentsService, PassedOutStudentsService passedOutStudentsService, CoursesService coursesService, EnrollmentsServices enrollmentsService)
         {
             _studentsService = studentsService;
             _passedOutStudentsService = passedOutStudentsService;
             _coursesService = coursesService;
-
+            _enrollmentsService = enrollmentsService;
         }
 
         // get all students
@@ -108,8 +109,10 @@ namespace MongoDBConnection.Controllers
 
             foreach(string c in passedOutStudent.Course)
             {
-                await _coursesService.MoveStudentAsync(c, id);
+                await _coursesService.MoveStudentAsync(c, id,passedOutStudent.Id!);
             }
+
+            await _enrollmentsService.UpdateStudentIdAsync(id, passedOutStudent.Id!);
 
             await _studentsService.DeleteStudentAsync(id);
 

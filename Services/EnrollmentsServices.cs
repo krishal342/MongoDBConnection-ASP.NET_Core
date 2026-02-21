@@ -30,5 +30,12 @@ namespace MongoDBConnection.Services
         // delete enrollment by id
         public async Task DeleteAsync(string id) =>
             await _enrollmentsCollection.DeleteOneAsync(x => x.Id == id);
+
+        // update student id in enrollment
+        public async Task UpdateStudentIdAsync( string oldStudentId, string newStudentId) =>
+            await _enrollmentsCollection.UpdateManyAsync(
+                    e => e.Student == oldStudentId,
+                    Builders<Enrollment>.Update.Set(e => e.Student, newStudentId)
+                );
     }
 }

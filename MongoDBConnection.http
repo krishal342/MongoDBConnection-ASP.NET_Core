@@ -4,7 +4,7 @@
 ###  
 //// students 
 
-@id=6996b71d4e37b7d9f7578a23
+@id=699982c54f08c6c23391a9dd
 
 GET {{MongoDBConnection_HostAddress}}/students
 
@@ -18,9 +18,9 @@ POST {{MongoDBConnection_HostAddress}}/students
 Content-Type: application/json
 
 {
-  "name":"rita",
-  "email":"RITA@gmail.com",
-  "address":"Patan"
+  "name":"Hari",
+  "email":"hari@gmail.com",
+  "address":"Bhaktapur"
 }
 
 ###
@@ -92,8 +92,8 @@ POST {{MongoDBConnection_HostAddress}}/enrollments
 Content-Type: application/json
 
 {
-  "student":"699730a39d3f2c958a1bf7b5",
-  "course":"6996bbf2a19ac1dad9632217"
+  "student":"699982c54f08c6c23391a9dd",
+  "course":"6996c178dcf60223d1096e2d"
 }
 
 ###
@@ -103,6 +103,15 @@ DELETE {{MongoDBConnection_HostAddress}}/enrollments/{{enrollmentId}}
 ###
 
 
+///////// passedoutstudents
 
+@pid = 6999835a4f08c6c23391a9e1
+###
+
+GET {{MongoDBConnection_HostAddress}}/passedoutstudents
+
+###
+
+GET {{MongoDBConnection_HostAddress}}/passedoutstudents/{{pid}}
 
 ###

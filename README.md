@@ -1,5 +1,9 @@
 # MongoDBConnection-ASP.NET_Core
 
+A project demonstration built with ASP.NET Core showcasing how to connect to a MongoDB database using the official MongoDB.Driver. The application implements full CRUD operations across multiple collections, modeling a basic academic system with Students, Courses, Enrollments, and PassedOutStudents. It highlights how to design and manage relationships between collections while incorporating both soft delete and hard delete strategies for data lifecycle management.
+
+
+
 # Student routes
 - /students -> POST request to create student -> take 'name', 'email', 'address'
 - /students -> GET request to get all students
@@ -19,4 +23,8 @@
 - /enrollments -> POST request to create enrollment -> take studentId as 'student' and courseId as 'course' 
 - /enrollments -> GET request to get all enrollment
 - /enrollments:id -> GET request to get enrollment by id
-- /ebrikknebts:id -> DELETE request to delete enrollment by id
+- /enrollments:id -> DELETE request to delete enrollment by id
+
+# PassedOutStudent routes
+- /passedoutstudents -> GET request to get all passed out students
+- /passedoutstudents:id -> GET request to get passed out student by id

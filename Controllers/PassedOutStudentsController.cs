@@ -16,11 +16,26 @@ namespace MongoDBConnection.Controllers
 
         }
 
-        // move student record to passedOutStudents record
 
         // get all record
+        [HttpGet]
+        public async Task<List<PassedOutStudent>> GetAllRecord() =>
+            await _studentsService.GetAllRecord();
 
         // get record by id
+        [HttpGet("{id}")]
+        public async Task<ActionResult<PassedOutStudent>> GetRecordById(string id)
+        {
+            
+            var student = await _studentsService.GetRecordById(id);
+
+            if(student is null)
+            {
+                return NotFound();
+            }
+
+            return student;
+        }
 
     }
 }
