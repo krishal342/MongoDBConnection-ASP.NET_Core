@@ -19,15 +19,15 @@ namespace MongoDBConnection.Services
         public async Task CreateEnrollmentAsync(Enrollment newEnrollment) =>
             await _enrollmentsCollection.InsertOneAsync(newEnrollment);
 
-         // get all enrollment
+         // read all enrollment
         public async Task<List<Enrollment>> GetAllEnrollmentAsync() =>
             await _enrollmentsCollection.Find(_ => true).ToListAsync();
 
-        // get enrollment by id 
+        // read enrollment by id 
         public async Task<Enrollment?> GetEnrollmentById(string id) =>
             await _enrollmentsCollection.Find(x => x.Id == id).FirstOrDefaultAsync();
 
-        // delete enrollment by id
+        // delete enrollment 
         public async Task DeleteAsync(string id) =>
             await _enrollmentsCollection.DeleteOneAsync(x => x.Id == id);
 

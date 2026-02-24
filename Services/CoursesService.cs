@@ -21,15 +21,15 @@ namespace MongoDBConnection.Services
         public async Task CreateCourseAsync(Course newCourse) =>
             await _coursesCollection.InsertOneAsync(newCourse);
 
-        // get all courses
+        // read all courses
         public async Task<List<Course>> GetAllCourseAsync() =>
             await _coursesCollection.Find(_ => true).ToListAsync();
 
-        // get course by id
+        // read course by id
         public async Task<Course?> GetCourseByIdAsync(string id) => 
             await _coursesCollection.Find(x => x.Id == id).FirstOrDefaultAsync();
 
-        // update course by id
+        // update course 
         public async Task UpdateCourseAsync(string id, Course updatedCourse) =>
             await _coursesCollection.ReplaceOneAsync(x => x.Id == id, updatedCourse);
 
@@ -54,8 +54,5 @@ namespace MongoDBConnection.Services
                 Builders<Course>.Update.Pull(c => c.CurrentStudent, oldStudentId).Push(c => c.PassedOutStudent, newStudentId)
                 );
 
-        // delete course by id
-        public async Task DeleteCourseAsync(string id) =>
-            await _coursesCollection.DeleteOneAsync(x => x.Id == id);
     }
 }

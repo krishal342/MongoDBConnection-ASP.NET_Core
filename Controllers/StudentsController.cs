@@ -85,7 +85,7 @@ namespace MongoDBConnection.Controllers
             return updatedStudent;
         }
 
-        // move student record to passedOutStudent collection by id
+        // move student record to passedOutStudent collection 
         [HttpDelete("{id}/softDelete")]
         public async Task<IActionResult> DeleteStudent(string id)
         {

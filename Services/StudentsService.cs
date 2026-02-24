@@ -21,15 +21,15 @@ namespace MongoDBConnection.Services
         public async Task CreateStudentAsync(Student newStudent) =>
             await _studentsCollection.InsertOneAsync(newStudent);
 
-        //get all students
+        //read all students
         public async Task<List<Student>> GetAllStudentAsync() =>
             await _studentsCollection.Find(_ => true).ToListAsync();
 
-        //get student by id
+        //read student by id
         public async Task<Student?> GetStudentByIdAsync(string id) =>
             await _studentsCollection.Find(x => x.Id == id).FirstOrDefaultAsync();
 
-        //update student by id
+        //update student
         public async Task UpdateStudentAsync(string id, Student updatedStudent) =>
             await _studentsCollection.ReplaceOneAsync(x => x.Id == id, updatedStudent);
 
@@ -40,14 +40,14 @@ namespace MongoDBConnection.Services
                 Builders<Student>.Update.Push(s => s.Course, courseId)
                 );
 
-        // delete courseId from student record
+        // delete courseId 
         public async Task RemoveCourseAsync(string studentId, string courseId) =>
             await _studentsCollection.UpdateOneAsync(
                 s => s.Id == studentId,
                 Builders<Student>.Update.Pull(s => s.Course, courseId)
                 );
 
-        //delete student by id
+        //delete student
         public async Task DeleteStudentAsync(string id) =>
             await _studentsCollection.DeleteOneAsync(x => x.Id == id);
     }

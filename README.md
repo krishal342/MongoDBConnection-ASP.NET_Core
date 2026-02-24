@@ -16,7 +16,6 @@ A project demonstration built with ASP.NET Core showcasing how to connect to a M
 - /courses -> GET request to get all courses
 - /courses/:id -> GET request to get course by id
 - /courses/:id -> PUT request to update course by id -> take 'title' or 'description' or 'creditHours'
-- /courses/:id -> DELETE request to delete course by id
 
 # Enrollment routes
 

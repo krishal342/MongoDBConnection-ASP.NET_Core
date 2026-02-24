@@ -68,21 +68,6 @@ namespace MongoDBConnection.Controllers
 
         }
 
-        // delete course by id
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteCourse(string id)
-        {
-            var course = await _coursesService.GetCourseByIdAsync(id);
-
-            if (course is null)
-            {
-                return NotFound();
-            }
-
-            await _coursesService.DeleteCourseAsync(id);
-
-            return NoContent();
-        }
     }
 
 }

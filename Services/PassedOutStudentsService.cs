@@ -20,11 +20,11 @@ namespace MongoDBConnection.Services
         public async Task CreateRecordAsync(PassedOutStudent record) =>
             await _studentsCollection.InsertOneAsync(record);
 
-        // get all
+        // read all
         public async Task<List<PassedOutStudent>> GetAllRecord() =>
             await _studentsCollection.Find(_ => true).ToListAsync(); 
 
-        // get by id
+        // read by id
         public async Task<PassedOutStudent?> GetRecordById(string id) =>
             await _studentsCollection.Find(x => x.Id == id).FirstOrDefaultAsync();
     }
